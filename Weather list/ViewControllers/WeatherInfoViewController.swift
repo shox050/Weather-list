@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WeatherInfoViewController.swift
 //  Weather list
 //
 //  Created by Vladimir on 10/09/2019.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class WeatherInfoViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
 }
-
