@@ -19,7 +19,7 @@ class WeatherCell: UITableViewCell {
         
         ivLogo.image = weather.icon
         lCityName.text = weather.cityName
-        lTemperature.text = String(weather.temperature)
+        lTemperature.text = "\(weather.temperature)°C"
         lDescription.text = weather.description
     }
 }

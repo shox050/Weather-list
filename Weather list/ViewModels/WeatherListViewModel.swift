@@ -11,6 +11,7 @@ import MapKit
 
 class WeatherListViewModel {
     
+    var selectedWeather: Weather?
     var weatherArray: [Weather] = []
     var didRequest = false
     

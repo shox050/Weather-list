@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 class WeatherListViewController: UITableViewController {
-    
+        
     private var didInitialRequest = false
     private let weatherListViewModel = WeatherListViewModel()
     private let locationManager = CLLocationManager()
@@ -28,6 +28,15 @@ class WeatherListViewController: UITableViewController {
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVc = segue.destination as? WeatherInfoController,
+            let weather = weatherListViewModel.selectedWeather else {
+                print("prepare for segue get error")
+                return
+        }
+        destinationVc.configure(withConfiguration: WeatherConfiguration(weather: weather))
     }
 }
 
@@ -51,7 +60,12 @@ extension WeatherListViewController {
 
 // MARK: - UITableViewDelegate
 extension WeatherListViewController {
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        weatherListViewModel.selectedWeather = weatherListViewModel.weatherArray[indexPath.row]
+        performSegue(withIdentifier: "showWeatherInfo", sender: self)
+    }
 }
 
 // MARK: - CLLocationManagerDelegate
