@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import MapKit
 
-class NetworkService {
+class NetworkService: NetworkRequestable {
     
     private let executionQueue = DispatchQueue(label: "NetworkExecutionQueue", qos: .background, attributes: .concurrent)
     

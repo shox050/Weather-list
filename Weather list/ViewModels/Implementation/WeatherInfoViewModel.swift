@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherInfoViewModel {
+class WeatherInfoViewModel: WeatherInfoModel {
     private let weather: Weather
     
     var cityName: String { return weather.cityName }
@@ -25,7 +25,7 @@ class WeatherInfoViewModel {
         return "latitude: \(weather.coordinate.latitude) longitude: \(weather.coordinate.longitude)"
     }
     
-    init(weather: Weather) {
+    required init(weather: Weather) {
         self.weather = weather
     }
 }

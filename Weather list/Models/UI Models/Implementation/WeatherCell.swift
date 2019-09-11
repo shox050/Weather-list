@@ -14,9 +14,12 @@ class WeatherCell: UITableViewCell {
     @IBOutlet private weak var lCityName: UILabel!
     @IBOutlet private weak var lTemperature: UILabel!
     @IBOutlet private weak var lDescription: UILabel!
-    
+
+}
+
+// MARK: - WeatherCellConfigurable
+extension WeatherCell: WeatherCellConfigurable {
     func configure(byWeather weather: Weather) {
-        
         ivLogo.image = weather.icon
         lCityName.text = weather.cityName
         lTemperature.text = "\(weather.temperature)°C"

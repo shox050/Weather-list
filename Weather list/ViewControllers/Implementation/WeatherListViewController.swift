@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MapKit
 import CoreLocation
 
 class WeatherListViewController: UITableViewController {
@@ -83,7 +82,7 @@ extension WeatherListViewController: CLLocationManagerDelegate {
 }
 
 extension WeatherListViewController {
-    func initialSetup(withLocation location: CLLocation) {
+   private func initialSetup(withLocation location: CLLocation) {
         
         DispatchQueue.global().async { [weak self] in
             
@@ -133,4 +132,10 @@ extension WeatherListViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+}
+
+
+// MARK: - WeatherInfoController
+extension WeatherListViewController: WeatherListController {
+    
 }

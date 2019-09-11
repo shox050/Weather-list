@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DictionaryEncoder {
+class DictionaryEncoder: DictionaryEncodable {
     func encode<T>(entity: T) -> [String:Any]? where T: Encodable {
         let encoder = JSONEncoder()
         

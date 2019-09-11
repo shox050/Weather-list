@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MapKit
+import CoreLocation
 
 class WeatherListViewModel {
     
@@ -16,7 +16,7 @@ class WeatherListViewModel {
     var didRequest = false
     
     private let imageParser: ImageParsable = ImageParser()
-    private let networkService = NetworkService() // Add type Protocol
+    private let networkService: NetworkRequestable = NetworkService()
     private let weatherResponseConverter: WeatherResponseConvertable = WeatherResponseConvertert()
     private let weatherQueue = DispatchQueue(label: "weatherQueue", qos: .background, attributes: .concurrent)
     
