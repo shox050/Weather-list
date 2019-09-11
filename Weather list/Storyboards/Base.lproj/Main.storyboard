@@ -22,7 +22,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="144" id="Zvl-65-pBW" customClass="WeatherCell" customModule="Weather_list" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zvl-65-pBW" id="9cN-xW-bYn">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zvl-65-pBW" id="9cN-xW-bYn">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="143.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -33,32 +33,38 @@
                                                 <constraint firstAttribute="height" constant="130" id="sRA-G4-Ws2"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW1-Rd-mrL">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW1-Rd-mrL">
                                             <rect key="frame" x="138" y="11" width="77" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nku-Y0-kCA">
-                                            <rect key="frame" x="296" y="11" width="98" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peu-PU-rox">
+                                            <rect key="frame" x="138" y="40" width="246" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peu-PU-rox">
-                                            <rect key="frame" x="138" y="40" width="246" height="93"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nku-Y0-kCA">
+                                            <rect key="frame" x="286" y="11" width="98" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="nku-Y0-kCA" firstAttribute="top" secondItem="9cN-xW-bYn" secondAttribute="topMargin" id="6XK-vH-GvJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="peu-PU-rox" secondAttribute="trailing" constant="10" id="DD6-xf-5D0"/>
                                         <constraint firstItem="RW1-Rd-mrL" firstAttribute="leading" secondItem="C2v-iW-c8S" secondAttribute="trailing" constant="8" id="I57-ob-PDc"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nku-Y0-kCA" secondAttribute="trailing" constant="10" id="TQw-d2-RRz"/>
+                                        <constraint firstItem="peu-PU-rox" firstAttribute="leading" secondItem="C2v-iW-c8S" secondAttribute="trailing" constant="8" id="W90-zo-DDb"/>
                                         <constraint firstAttribute="bottom" secondItem="C2v-iW-c8S" secondAttribute="bottom" id="XXC-ih-7c6"/>
+                                        <constraint firstItem="RW1-Rd-mrL" firstAttribute="leading" secondItem="C2v-iW-c8S" secondAttribute="trailing" constant="8" id="g2Y-3p-tdQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="peu-PU-rox" secondAttribute="bottom" constant="8" id="g4s-yN-gxi"/>
+                                        <constraint firstItem="RW1-Rd-mrL" firstAttribute="top" secondItem="9cN-xW-bYn" secondAttribute="topMargin" id="icv-7A-oGC"/>
                                         <constraint firstItem="C2v-iW-c8S" firstAttribute="leading" secondItem="9cN-xW-bYn" secondAttribute="leading" id="kqp-UC-YnM"/>
                                         <constraint firstItem="C2v-iW-c8S" firstAttribute="top" secondItem="9cN-xW-bYn" secondAttribute="top" id="wOM-12-Ubv"/>
+                                        <constraint firstItem="peu-PU-rox" firstAttribute="top" secondItem="RW1-Rd-mrL" secondAttribute="bottom" constant="8" id="zUa-dq-8Ub"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -74,7 +80,13 @@
                             <outlet property="delegate" destination="bqn-Xz-Jid" id="OPl-hA-nLJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Weather list" id="PoR-ad-Stj"/>
+                    <navigationItem key="navigationItem" title="Weather list" id="PoR-ad-Stj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Veo-p6-TUt">
+                            <connections>
+                                <action selector="addNewCity:" destination="bqn-Xz-Jid" id="iC5-hb-379"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BSm-8u-QEd" kind="show" identifier="showInfoViewController" id="xdi-Uc-DKa"/>
                     </connections>

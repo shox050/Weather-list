@@ -16,6 +16,11 @@ class WeatherListViewController: UITableViewController {
     private let weatherListViewModel = WeatherListViewModel()
     private let locationManager = CLLocationManager()
     
+    @IBAction private func addNewCity(_ sender: UIBarButtonItem) {
+        addNewCity(title: "Add new city", message: "Enter the name")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
@@ -71,22 +76,47 @@ extension WeatherListViewController {
             guard let this = self else { return }
             
             this.weatherListViewModel.getCityName(forLocation: location) { cityName in
-                this.weatherListViewModel.getWeatherInCity(byName: cityName) {
+                this.weatherListViewModel.getWeatherInCity(byName: cityName) { weather in
                     
                     DispatchQueue.main.sync {
                         this.tableView.reloadData()
                     }
-                    
-                    guard let initialWeather = this.weatherListViewModel.weatherArray.first else {
-                        print("No weather in weather array, \(#function)")
-                        return
-                    }
-                    this.weatherListViewModel.getIcon(forWeather: initialWeather) { index in
+
+                    this.weatherListViewModel.getIcon(forWeather: weather) { index in
                         let indexPath = IndexPath(row: index, section: 0)
                         this.tableView.reloadRows(at: [indexPath], with: .automatic)
                     }
                 }
             }
         }
+    }
+    
+    private func addNewCity(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addTextField()
+        
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak self] _ in
+            
+            guard let this = self else { return }
+            
+            guard let textField = alert.textFields?.first, let text = textField.text else {
+                print("No textField in Alert: \(#function)")
+                return
+            }
+            
+            this.weatherListViewModel.getWeatherInCity(byName: text, { weather in
+                DispatchQueue.main.sync {
+                    this.tableView.reloadData()
+                }
+                
+                this.weatherListViewModel.getIcon(forWeather: weather) { index in
+                    let indexPath = IndexPath(row: index, section: 0)
+                    this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }

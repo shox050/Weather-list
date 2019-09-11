@@ -19,7 +19,7 @@ class WeatherListViewModel {
     private let weatherResponseConverter: WeatherResponseConvertable = WeatherResponseConvertert()
     private let weatherQueue = DispatchQueue(label: "weatherQueue", qos: .background, attributes: .concurrent)
     
-    func getWeatherInCity(byName name: String, _ completion: @escaping () -> Void) {
+    func getWeatherInCity(byName name: String, _ completion: @escaping (Weather) -> Void) {
         
         networkService.getWeatherInCity(byName: name) { [weak self] response in
             
@@ -27,8 +27,9 @@ class WeatherListViewModel {
             
             switch response {
             case .success(let weatherResponse):
-                this.weatherArray.append(this.weatherResponseConverter.convert(weatherResponse))
-                completion()
+                let weather = this.weatherResponseConverter.convert(weatherResponse)
+                this.weatherArray.append(weather)
+                completion(weather)
             case .failure(let error):
                 print("WeatherListViewModel getCitybyCoordinate response error: ",error)
             }
