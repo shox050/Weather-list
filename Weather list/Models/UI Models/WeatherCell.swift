@@ -12,11 +12,14 @@ class WeatherCell: UITableViewCell {
     
     @IBOutlet private weak var ivLogo: UIImageView!
     @IBOutlet private weak var lCityName: UILabel!
-    @IBOutlet private weak var temperature: UILabel!
-    @IBOutlet private weak var weatherDescription: UILabel!
+    @IBOutlet private weak var lTemperature: UILabel!
+    @IBOutlet private weak var lDescription: UILabel!
     
     func configure(byWeather weather: Weather) {
         
-        
+        ivLogo.image = weather.icon
+        lCityName.text = weather.cityName
+        lTemperature.text = String(weather.temperature)
+        lDescription.text = weather.description
     }
 }

@@ -10,14 +10,14 @@ import Foundation
 import Alamofire
 
 enum Endpoint: URLRequestConvertible {
-    static let baseUrl = "http://api.openweathermap.org/data/2.5"
+    static let baseUrl = "http://api.openweathermap.org"
     
     case weather
     
     var path: String {
         switch self {
         case .weather:
-            return "weather"
+            return "/data/2.5/weather"
         }
     }
 

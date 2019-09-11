@@ -9,23 +9,20 @@
 import Foundation
 
 struct RequestParameters: Encodable {
-    var latitude: Double
-    var longitude: Double
+    var cityName: String
     var measurementType: String
     
     let apiKey: String = NetworkServiceConfiguration.apiKey
     
     
-    init(latitude: Double, longitude: Double, measurementType: String = "metric") {
-        self.latitude = latitude
-        self.longitude = longitude
+    init(cityName: String, measurementType: String = "metric") {
+        self.cityName = cityName
         self.measurementType = measurementType
     }
     
     
     private enum CodingKeys: String, CodingKey {
-        case latitude = "lat"
-        case longitude = "lon"
+        case cityName = "q"
         case measurementType = "units"
         case apiKey = "appid"
     }
