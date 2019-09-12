@@ -127,12 +127,9 @@ extension WeatherListViewController {
                 
                 switch response {
                 case .success(let weather):
-                    DispatchQueue.main.sync {
-                        this.tableView.reloadData()
-                    }
                     this.weatherListViewModel.getIcon(forWeather: weather) { index in
                         let indexPath = IndexPath(row: index, section: 0)
-                        this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        this.tableView.insertRows(at: [indexPath], with: .automatic)
                     }
                     
                 case .failure(let failResponse):
@@ -146,8 +143,8 @@ extension WeatherListViewController {
     }
     
     private func showAlert(withResponse response: FailResponse) {
-        let alert = UIAlertController(title: response.message,
-                                      message: "Fail response, cod :\(response.cod)", preferredStyle: .alert)
+        let alert = UIAlertController(title: response.message.capitalized,
+                                      message: "Try again", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
