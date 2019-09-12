@@ -12,8 +12,8 @@ import MapKit
 
 class NetworkService {
     
-    private let executionQueue = DispatchQueue(label: "NetworkExecutionQueue", qos: .background, attributes: .concurrent)
-    
+    private let executionQueue = DispatchQueue(label: "NetworkExecutionQueue",
+                                               qos: .background, attributes: .concurrent)
     private let dictionaryEncoder = DictionaryEncoder()
     
     
@@ -28,10 +28,12 @@ class NetworkService {
             .validate()
             .responseData(queue: executionQueue) { response in
                 
-                print("Request ", response.request)
                 completion(response)
         }
     }
+}
+
+extension NetworkService: NetworkRequestable {
     
     func getWeatherInCity(byName name: String, _ completion: @escaping (Result<WeatherResponse, FailResponse>) -> Void) {
         
@@ -58,6 +60,7 @@ class NetworkService {
         }
     }
     
+    
     func getIcon(byId id: String, _ completion: @escaping (Result<Data, Error>) -> Void) {
         
         let path = "http://openweathermap.org/img/wn/\(id)@2x.png"
@@ -67,7 +70,6 @@ class NetworkService {
         }
         
         AF.request(pathUrl).validate().responseData { response in
-            print("Func get icon request: ", response.request)
             guard let responseData = response.data else {
                 print("getIcon by id get error: ", response.error)
                 completion(.failure(ResponseError.network))
@@ -77,4 +79,5 @@ class NetworkService {
             completion(.success(responseData))
         }
     }
+
 }

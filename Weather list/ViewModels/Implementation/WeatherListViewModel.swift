@@ -16,7 +16,7 @@ class WeatherListViewModel {
     var didRequest = false
     
     private let imageParser: ImageParsable = ImageParser()
-    private let networkService = NetworkService()
+    private let networkService: NetworkRequestable = NetworkService()
     private let weatherResponseConverter: WeatherResponseConvertable = WeatherResponseConvertert()
     private let weatherQueue = DispatchQueue(label: "weatherQueue", qos: .background, attributes: .concurrent)
     
@@ -85,13 +85,13 @@ class WeatherListViewModel {
             geocoder.reverseGeocodeLocation(location) { placemarks, error in
                 
                 guard error == nil else {
-                    print("Error in \(#function): \(error)")
+                    print("getPlace get error: \(error)")
                     completion(nil)
                     return
                 }
                 
                 guard let placemark = placemarks?.first else {
-                    print("Error in \(#function): placemark is nil")
+                    print("getPlace: placemark is nil")
                     completion(nil)
                     return
                 }

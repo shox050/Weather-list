@@ -9,7 +9,7 @@
 import Foundation
 
 protocol NetworkRequestable {
-    func getWeatherInCity(byName name: String, _ completion: @escaping (Result<WeatherResponse, Error>) -> Void)
+    func getWeatherInCity(byName name: String, _ completion: @escaping (Result<WeatherResponse, FailResponse>) -> Void)
     
     func getIcon(byId id: String, _ completion: @escaping (Result<Data, Error>) -> Void)
 }
