@@ -16,11 +16,11 @@ class WeatherListViewModel {
     var didRequest = false
     
     private let imageParser: ImageParsable = ImageParser()
-    private let networkService: NetworkRequestable = NetworkService()
+    private let networkService = NetworkService()
     private let weatherResponseConverter: WeatherResponseConvertable = WeatherResponseConvertert()
     private let weatherQueue = DispatchQueue(label: "weatherQueue", qos: .background, attributes: .concurrent)
     
-    func getWeatherInCity(byName name: String, _ completion: @escaping (Weather) -> Void) {
+    func getWeatherInCity(byName name: String, _ completion: @escaping (Result<Weather, FailResponse>) -> Void) {
         
         networkService.getWeatherInCity(byName: name) { [weak self] response in
             
@@ -30,9 +30,9 @@ class WeatherListViewModel {
             case .success(let weatherResponse):
                 let weather = this.weatherResponseConverter.convert(weatherResponse)
                 this.weatherArray.append(weather)
-                completion(weather)
-            case .failure(let error):
-                print("WeatherListViewModel getCitybyCoordinate response error: ",error)
+                completion(.success(weather))
+            case .failure(let failResponse):
+                completion(.failure(failResponse))
             }
         }
     }

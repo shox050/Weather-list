@@ -23,6 +23,7 @@
 		E739345423294CA300F320D7 /* DictionaryEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E739345323294CA300F320D7 /* DictionaryEncodable.swift */; };
 		E739345A23294D4000F320D7 /* WeatherListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E739345923294D4000F320D7 /* WeatherListModel.swift */; };
 		E739345C23294DE400F320D7 /* WeatherInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E739345B23294DE400F320D7 /* WeatherInfoModel.swift */; };
+		E739345E2329666800F320D7 /* FailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E739345D2329666800F320D7 /* FailResponse.swift */; };
 		E7EDA19C2327C5C60062CD12 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EDA1992327C5C50062CD12 /* NetworkService.swift */; };
 		E7EDA19D2327C5C60062CD12 /* NetworkServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EDA19A2327C5C50062CD12 /* NetworkServiceConfiguration.swift */; };
 		E7EDA19E2327C5C60062CD12 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EDA19B2327C5C60062CD12 /* Endpoint.swift */; };
@@ -61,6 +62,7 @@
 		E739345323294CA300F320D7 /* DictionaryEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncodable.swift; sourceTree = "<group>"; };
 		E739345923294D4000F320D7 /* WeatherListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListModel.swift; sourceTree = "<group>"; };
 		E739345B23294DE400F320D7 /* WeatherInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoModel.swift; sourceTree = "<group>"; };
+		E739345D2329666800F320D7 /* FailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailResponse.swift; sourceTree = "<group>"; };
 		E7EDA1992327C5C50062CD12 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E7EDA19A2327C5C50062CD12 /* NetworkServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceConfiguration.swift; sourceTree = "<group>"; };
 		E7EDA19B2327C5C60062CD12 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				E7EDA1A32327C8A20062CD12 /* WeatherResponse.swift */,
+				E739345D2329666800F320D7 /* FailResponse.swift */,
 			);
 			path = Decodable;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				E739343F2328B14400F320D7 /* WeatherResponseConvertable.swift in Sources */,
 				E7FF2853232839C7008817D4 /* WeatherResponseConverter.swift in Sources */,
 				E7EDA1A52327C8A20062CD12 /* WeatherResponse.swift in Sources */,
+				E739345E2329666800F320D7 /* FailResponse.swift in Sources */,
 				E72267312327BC0300A4BF90 /* WeatherListViewController.swift in Sources */,
 				E739345C23294DE400F320D7 /* WeatherInfoModel.swift in Sources */,
 				E739344E23294AD600F320D7 /* WeatherListController.swift in Sources */,

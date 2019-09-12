@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import MapKit
 
-class NetworkService: NetworkRequestable {
+class NetworkService {
     
     private let executionQueue = DispatchQueue(label: "NetworkExecutionQueue", qos: .background, attributes: .concurrent)
     
@@ -33,7 +33,7 @@ class NetworkService: NetworkRequestable {
         }
     }
     
-    func getWeatherInCity(byName name: String, _ completion: @escaping (Result<WeatherResponse, Error>) -> Void) {
+    func getWeatherInCity(byName name: String, _ completion: @escaping (Result<WeatherResponse, FailResponse>) -> Void) {
         
         let requestParameters = RequestParameters(cityName: name)
         let parametersEncoded = dictionaryEncoder.encode(entity: requestParameters)
@@ -41,19 +41,19 @@ class NetworkService: NetworkRequestable {
         request(.weather, parameters: parametersEncoded) { response in
             
             guard let responseData = response.data else {
-                print("getCity by coordinate get error: ", response.error)
-                completion(.failure(ResponseError.network))
+                print("getWeatherInCity byName сant get data from response: ", response.error)
                 return
             }
             
             let jsonDecoder = JSONDecoder()
             
+            
             do {
-                let weather = try jsonDecoder.decode(WeatherResponse.self, from: responseData)
-                completion(.success(weather))
-            } catch let error {
-                print("getCity get error with decoding: ", error)
-                completion(.failure(ResponseError.decoding))
+                if let weather = try? jsonDecoder.decode(WeatherResponse.self, from: responseData) {
+                    completion(.success(weather))
+                } else if let failResponse = try? jsonDecoder.decode(FailResponse.self, from: responseData) {
+                    completion(.failure(failResponse))
+                }
             }
         }
     }

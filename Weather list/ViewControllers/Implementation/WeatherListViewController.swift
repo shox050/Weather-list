@@ -89,15 +89,20 @@ extension WeatherListViewController {
             guard let this = self else { return }
             
             this.weatherListViewModel.getCityName(forLocation: location) { cityName in
-                this.weatherListViewModel.getWeatherInCity(byName: cityName) { weather in
+                this.weatherListViewModel.getWeatherInCity(byName: cityName) { response in
                     
-                    DispatchQueue.main.sync {
-                        this.tableView.reloadData()
-                    }
-
-                    this.weatherListViewModel.getIcon(forWeather: weather) { index in
-                        let indexPath = IndexPath(row: index, section: 0)
-                        this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    switch response {
+                    case .success(let weather):
+                        DispatchQueue.main.sync {
+                            this.tableView.reloadData()
+                        }
+                        this.weatherListViewModel.getIcon(forWeather: weather) { index in
+                            let indexPath = IndexPath(row: index, section: 0)
+                            this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+                        
+                    case .failure(let failResponse):
+                        this.showAlert(withResponse: failResponse)
                     }
                 }
             }
@@ -118,19 +123,34 @@ extension WeatherListViewController {
                 return
             }
             
-            this.weatherListViewModel.getWeatherInCity(byName: text, { weather in
-                DispatchQueue.main.sync {
-                    this.tableView.reloadData()
-                }
+            this.weatherListViewModel.getWeatherInCity(byName: text, { response in
                 
-                this.weatherListViewModel.getIcon(forWeather: weather) { index in
-                    let indexPath = IndexPath(row: index, section: 0)
-                    this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                switch response {
+                case .success(let weather):
+                    DispatchQueue.main.sync {
+                        this.tableView.reloadData()
+                    }
+                    this.weatherListViewModel.getIcon(forWeather: weather) { index in
+                        let indexPath = IndexPath(row: index, section: 0)
+                        this.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                    
+                case .failure(let failResponse):
+                    this.showAlert(withResponse: failResponse)
                 }
             })
         }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
+    }
+    
+    private func showAlert(withResponse response: FailResponse) {
+        let alert = UIAlertController(title: response.message,
+                                      message: "Fail response, cod :\(response.cod)", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
